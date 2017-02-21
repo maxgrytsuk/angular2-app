@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute }   from '@angular/router';
-import { Observable }       from 'rxjs/Observable';
+import { ActivatedRoute }   from '@angular/router';
 
-import { GigyaService } from '../gigya.service';
+import { GigyaApiService } from '../gigya-api.service';
 
 @Component({
   selector: 'account-options',
   templateUrl: './account-options.component.html',
   styleUrls: ['./account-options.component.css'],
-  providers: [ GigyaService ]
+  providers: [ GigyaApiService ]
 })
 export class AccountOptionsComponent implements OnInit {
 
-  readonly:boolean;
+  readonly: boolean;
+  data: any;
 
-  data: Observable<string[]>;
-
-  constructor(private route: ActivatedRoute, private service: GigyaService) { }
+  constructor(private route: ActivatedRoute, private service: GigyaApiService) { }
 
   ngOnInit() {
     this.readonly = !!this.route.snapshot.url.length;
-    this.data = this.service.getAccountOptions();
+    this.service.getPolicies()
+      .then( data => this.data = data.accountOptions );
   }
 
 }

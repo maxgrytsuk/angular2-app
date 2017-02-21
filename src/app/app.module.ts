@@ -7,8 +7,7 @@ import { RouterModule }   from '@angular/router';
 import { AppComponent } from './app.component';
 import { AccountOptionsComponent } from './account-options/account-options.component';
 
-import { GigyaService } from './gigya.service';
-
+import { GigyaApiService } from './gigya-api.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,7 @@ import { GigyaService } from './gigya.service';
     ])
   ],
   providers: [
-    GigyaService
+    GigyaApiService
   ],
   bootstrap: [AppComponent]
 })

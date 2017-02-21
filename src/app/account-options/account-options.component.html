@@ -1,6 +1,7 @@
 <p>
   account-options : {{readonly}}
 </p>
-<ul>
-  <li *ngFor="let item of data | async">{{item}}</li>
-</ul>
+
+<div *ngIf="data">
+  {{data.verifyProviderEmail}}
+</div>
