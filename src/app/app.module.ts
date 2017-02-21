@@ -19,7 +19,6 @@ import { GigyaApiService } from './gigya-api.service';
     FormsModule,
     HttpModule,
     JsonpModule,
-    //TODO move to routing module
     RouterModule.forRoot([
       {
         path: '',

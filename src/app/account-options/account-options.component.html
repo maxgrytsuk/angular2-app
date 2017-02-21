@@ -127,4 +127,12 @@
 
   <button type="submit" [disabled]="readonly" class="btn btn-default col-sm-offset-2">Submit</button>
 
+  <div class="clearfix"></div>
+
+  <div class="alert-container col-sm-2 col-sm-offset-2" *ngIf="isAlertVisible">
+    <span [innerHtml]="message"></span>
+  </div>
+
 </form>
+
+

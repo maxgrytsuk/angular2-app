@@ -14,8 +14,14 @@ import { GigyaApiService } from '../gigya-api.service';
 export class AccountOptionsComponent implements OnInit {
 
   readonly: boolean;
+
+  isAlertVisible: boolean = false;
+
   model: any;
-  loginIdentifierConflicts: any = [
+
+  message: string;
+
+  loginIdentifierConflicts: [any] = [
     {
       name:'Ignore', value: 'ignore'
     },
@@ -38,8 +44,10 @@ export class AccountOptionsComponent implements OnInit {
   onSubmit(form, data) {
     if (form.valid) {
       this.service.setPolicies({paramName:'accountOptions', data: data})
-        .then( data => {
-          console.log(data)
+        .then( res => {
+          this.isAlertVisible = true;
+          this.message = res.errorCode === 0?'Account options were saved':res.errorMessage;
+          setTimeout(() => { this.isAlertVisible = false; }, 1000);
         } );
     }
   }
