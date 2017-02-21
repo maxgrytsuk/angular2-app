@@ -10,6 +10,8 @@ export class GigyaApiService {
 
   private policiesUrlGet = 'accounts.getPolicies';
 
+  private policiesUrlSet = 'accounts.setPolicies';
+
   private credentials = {
     UserKey: 'AJA3Cw9XcJZf',
     UserSecret: '1J+YxAY47khnuXf4GKSggLpPFBbQv8Hq',
@@ -19,23 +21,38 @@ export class GigyaApiService {
   constructor(private jsonp: Jsonp) { }
 
   getPolicies() {
-    let params = new URLSearchParams('', new GigyaQueryEncoder());
-    params.set('userkey', this.credentials.UserKey);
-    params.set('secret', this.credentials.UserSecret);
-    params.set('apikey', this.credentials.APIKey);
-    params.set('format', 'jsonp');
-    params.set('callback', 'JSONP_CALLBACK');
-
     return this.jsonp
-      .get(`${this.host}/${this.policiesUrlGet}`, { search: params })
+      .get(`${this.host}/${this.policiesUrlGet}`, { search: this.getParams() })
       .map(response => response.json())
       .map(data => data)
       .toPromise()
       .catch(this.handleError);
   }
 
+  setPolicies(spec) {
+    let params = this.getParams();
+    params.set(spec.paramName, JSON.stringify(spec.data));
+
+    return this.jsonp
+      .get(`${this.host}/${this.policiesUrlSet}`, { search: params })
+      .map(response => response.json())
+      .map(data => data)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  private getParams() {
+    let params = new URLSearchParams('', new GigyaQueryEncoder());
+    params.set('userkey', this.credentials.UserKey);
+    params.set('secret', this.credentials.UserSecret);
+    params.set('apikey', this.credentials.APIKey);
+    params.set('format', 'jsonp');
+    params.set('callback', 'JSONP_CALLBACK');
+    return params;
+  }
+
   private handleError(error: any): Promise<any> {
-   return Promise.reject(error.message || error);
+    return Promise.reject(error.message || error);
   }
 }
 
@@ -49,8 +66,8 @@ class GigyaQueryEncoder extends QueryEncoder {
 }
 
 /*
-* Gigya API service demands '+' to be encoded
-* */
+ * Gigya API service demands '+' to be encoded
+ * */
 function gigyaEncodingFunction(v) {
   return encodeURIComponent(v)
     .replace(/%40/gi, '@')

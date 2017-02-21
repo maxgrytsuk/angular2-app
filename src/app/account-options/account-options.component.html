@@ -12,8 +12,7 @@
                  [(ngModel)]="model.verifyEmail"
                  [disabled]="readonly"
                  name="verifyEmail"
-                 id="verifyEmail"
-                 #verifyEmail="ngModel">
+                 id="verifyEmail">
           Verify Email
         </label>
       </div>
@@ -28,8 +27,7 @@
                  [(ngModel)]="model.verifyProviderEmail"
                  [disabled]="readonly"
                  name="verifyProviderEmail"
-                 id="verifyProviderEmail"
-                 #verifyProviderEmail="ngModel">
+                 id="verifyProviderEmail">
           Verify Provider Email
         </label>
       </div>
@@ -44,8 +42,7 @@
                  [(ngModel)]="model.allowUnverifiedLogin"
                  [disabled]="readonly"
                  name="allowUnverifiedLogin"
-                 id="allowUnverifiedLogin"
-                 #allowUnverifiedLogin="ngModel">
+                 id="allowUnverifiedLogin">
           Allow Unverified Login
         </label>
       </div>
@@ -60,8 +57,7 @@
                  [(ngModel)]="model.preventLoginIDHarvesting"
                  [disabled]="readonly"
                  name="preventLoginIDHarvesting"
-                 id="preventLoginIDHarvesting"
-                 #preventLoginIDHarvesting="ngModel">
+                 id="preventLoginIDHarvesting">
           Prevent Login ID Harvesting
         </label>
       </div>
@@ -76,8 +72,7 @@
                  [(ngModel)]="model.sendWelcomeEmail"
                  [disabled]="readonly"
                  name="sendWelcomeEmail"
-                 id="sendWelcomeEmail"
-                 #sendWelcomeEmail="ngModel">
+                 id="sendWelcomeEmail">
           Send Welcome Email
         </label>
       </div>
@@ -92,8 +87,7 @@
                  [(ngModel)]="model.sendAccountDeletedEmail"
                  [disabled]="readonly"
                  name="sendAccountDeletedEmail"
-                 id="sendAccountDeletedEmail"
-                 #sendAccountDeletedEmail="ngModel">
+                 id="sendAccountDeletedEmail">
           Send Account Deleted Email
         </label>
       </div>
@@ -106,8 +100,7 @@
       <input type="text" class="form-control" id="loginIdentifiers"
              required
              [(ngModel)]="model.loginIdentifiers" name="loginIdentifiers"
-             [disabled]="readonly"
-             #loginIdentifiers="ngModel">
+             [disabled]="readonly">
     </div>
   </div>
 
@@ -117,8 +110,7 @@
       <input type="text" class="form-control" id="defaultLanguage"
              required
              [(ngModel)]="model.defaultLanguage" name="defaultLanguage"
-             [disabled]="readonly"
-             #defaultLanguage="ngModel">
+             [disabled]="readonly">
     </div>
   </div>
 
@@ -133,6 +125,6 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-default col-sm-offset-2">Submit</button>
+  <button type="submit" [disabled]="readonly" class="btn btn-default col-sm-offset-2">Submit</button>
 
 </form>

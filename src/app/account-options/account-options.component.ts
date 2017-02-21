@@ -35,4 +35,13 @@ export class AccountOptionsComponent implements OnInit {
       .then( data => this.model = data.accountOptions );
   }
 
+  onSubmit(form, data) {
+    if (form.valid) {
+      this.service.setPolicies({paramName:'accountOptions', data: data})
+        .then( data => {
+          console.log(data)
+        } );
+    }
+  }
+
 }
