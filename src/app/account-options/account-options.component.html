@@ -1,7 +1,138 @@
-<p>
-  accountOptions readonly : {{readonly}}
-</p>
+<h3 class="col-sm-offset-2">
+  Account Options
+</h3>
 
-<div *ngIf="data">
-  {{data.verifyProviderEmail}}
-</div>
+<form class="form-horizontal" *ngIf="model" (ngSubmit)="onSubmit(accountOptionsForm, model)" #accountOptionsForm="ngForm">
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label for="verifyEmail">
+          <input type="checkbox"
+                 [(ngModel)]="model.verifyEmail"
+                 [disabled]="readonly"
+                 name="verifyEmail"
+                 id="verifyEmail"
+                 #verifyEmail="ngModel">
+          Verify Email
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label for="verifyProviderEmail">
+          <input type="checkbox"
+                 [(ngModel)]="model.verifyProviderEmail"
+                 [disabled]="readonly"
+                 name="verifyProviderEmail"
+                 id="verifyProviderEmail"
+                 #verifyProviderEmail="ngModel">
+          Verify Provider Email
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label for="allowUnverifiedLogin">
+          <input type="checkbox"
+                 [(ngModel)]="model.allowUnverifiedLogin"
+                 [disabled]="readonly"
+                 name="allowUnverifiedLogin"
+                 id="allowUnverifiedLogin"
+                 #allowUnverifiedLogin="ngModel">
+          Allow Unverified Login
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label for="preventLoginIDHarvesting">
+          <input type="checkbox"
+                 [(ngModel)]="model.preventLoginIDHarvesting"
+                 [disabled]="readonly"
+                 name="preventLoginIDHarvesting"
+                 id="preventLoginIDHarvesting"
+                 #preventLoginIDHarvesting="ngModel">
+          Prevent Login ID Harvesting
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label for="sendWelcomeEmail">
+          <input type="checkbox"
+                 [(ngModel)]="model.sendWelcomeEmail"
+                 [disabled]="readonly"
+                 name="sendWelcomeEmail"
+                 id="sendWelcomeEmail"
+                 #sendWelcomeEmail="ngModel">
+          Send Welcome Email
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label for="sendAccountDeletedEmail">
+          <input type="checkbox"
+                 [(ngModel)]="model.sendAccountDeletedEmail"
+                 [disabled]="readonly"
+                 name="sendAccountDeletedEmail"
+                 id="sendAccountDeletedEmail"
+                 #sendAccountDeletedEmail="ngModel">
+          Send Account Deleted Email
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="loginIdentifiers">Login Identifiers</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="loginIdentifiers"
+             required
+             [(ngModel)]="model.loginIdentifiers" name="loginIdentifiers"
+             [disabled]="readonly"
+             #loginIdentifiers="ngModel">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="defaultLanguage">Default Language</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="defaultLanguage"
+             required
+             [(ngModel)]="model.defaultLanguage" name="defaultLanguage"
+             [disabled]="readonly"
+             #defaultLanguage="ngModel">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="loginIdentifierConflict">Login Identifier Conflict</label>
+    <div class="col-sm-2">
+      <select class="col-sm-2 form-control" id="loginIdentifierConflict"
+              [disabled]="readonly"
+              name="loginIdentifierConflict" [(ngModel)]="model.loginIdentifierConflict">
+        <option *ngFor="let loginIdentifierConflict of loginIdentifierConflicts" [ngValue]="loginIdentifierConflict.value">{{loginIdentifierConflict.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-default col-sm-offset-2">Submit</button>
+
+</form>
