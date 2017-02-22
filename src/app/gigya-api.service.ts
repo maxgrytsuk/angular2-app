@@ -35,7 +35,6 @@ export class GigyaApiService {
     return this.jsonp
       .get(`${this.host}/${this.policiesUrlSet}`, { search: params })
       .map(response => response.json())
-      .map(data => data)
       .toPromise()
       .catch(this.handleError);
   }
